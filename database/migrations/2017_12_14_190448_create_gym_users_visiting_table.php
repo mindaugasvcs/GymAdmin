@@ -13,8 +13,9 @@ class CreateGymUsersVisitingTable extends Migration
      */
     public function up()
     {
-        Schema::create('gym_users_visiting', function (Blueprint $table) {
+        Schema::create('visiting', function (Blueprint $table) {
             $table->increments('id');
+            $table->unsignedInteger('card_id');
             $table->timestamps();
         });
     }
@@ -26,6 +27,6 @@ class CreateGymUsersVisitingTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('gym_users_visiting');
+        Schema::dropIfExists('visiting');
     }
 }
