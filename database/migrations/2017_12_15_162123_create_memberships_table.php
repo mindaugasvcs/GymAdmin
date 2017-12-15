@@ -13,13 +13,13 @@ class CreateMembershipsTable extends Migration
      */
     public function up()
     {
-        Schema::create('memberships', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('memberships', 100);
-            $table->unsignedInteger('valid_days');
-            $table->unsignedDecimal('price', 6, 2);
-            $table->timestamps();
-        });
+      Schema::create('memberships', function (Blueprint $table) {
+          $table->increments('id');
+          $table->string('memberships', 100);
+          $table->unsignedInteger('valid_days');
+          $table->unsignedDecimal('price', 6, 2);
+          $table->timestamps();
+      });
     }
 
     /**

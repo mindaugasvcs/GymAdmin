@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class gym_users_seeder extends Seeder
+class members_seeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -25,6 +25,6 @@ class gym_users_seeder extends Seeder
                 'expiry_date' => '2018-01-15',
               ];
             }
-            DB::table('gym_users')->insert($data);
+            DB::table('members')->insert($data);
     }
 }
