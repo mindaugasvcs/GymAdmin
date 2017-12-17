@@ -15,10 +15,8 @@ class CreateMembersTable extends Migration
     {
         Schema::create('members', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('card_id');
-            $table->string('name', 30);
-            $table->date('start_date');
-            $table->date('expiry_date');
+            $table->unsignedInteger('unique_id')->unique();
+            $table->string('name', 30)->charset('utf8mb4')->collation('utf8mb4_unicode_ci');
             $table->timestamps();
         });
     }

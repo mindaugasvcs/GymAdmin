@@ -26,4 +26,12 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+     * Get the payments accepted by the user.
+     */
+    public function payments()
+    {
+        return $this->hasMany('App\Payment');
+    }
 }
