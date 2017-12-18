@@ -23,7 +23,8 @@ class MembershipController extends Controller
      */
     public function index()
     {
-        //
+        $memberships = \App\Membership::all();
+        return view('memberships', ['memberships' => $memberships]);
     }
 
     /**
@@ -90,5 +91,11 @@ class MembershipController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function findMembership(Request $request)
+    {
+        $data = \App\Membership::select('price', 'valid_days', 'id')->where('id', $request->id)->get();
+        return response()->json($data);
     }
 }

@@ -23,7 +23,8 @@ class MemberController extends Controller
      */
     public function index()
     {
-        //
+      $members = \App\Member::orderBy('created_at', 'desc')->paginate(15);
+      return view('members.all', ['members' => $members]);
     }
 
     /**
@@ -33,7 +34,8 @@ class MemberController extends Controller
      */
     public function create()
     {
-        //
+        $memberships = \App\Membership::all();
+        return view('members.create', ['memberships'=>$memberships]);
     }
 
     /**
@@ -44,7 +46,18 @@ class MemberController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // $rules = [
+          // 'card_id' => 'required|numeric',
+          // 'name' => 'required|max:100',
+          // 'start_date' => 'required|date',
+          // 'expiry_date' => 'date',
+        // ];
+
+        // $request->validate($rules);
+        // $member = new \App\Member($request->all());
+        // $member->save();
+
+        // return redirect('members');
     }
 
     /**

@@ -22,3 +22,7 @@ Route::resource('/members', 'MemberController');
 Route::resource('/memberships', 'MembershipController');
 Route::resource('/payments', 'PaymentController');
 Route::resource('/visits', 'VisitController');
+
+Route::get('/validateMembership', 'VisitController@validateMembership');
+Route::get('/membership', 'MembershipController@findMembership');
+
