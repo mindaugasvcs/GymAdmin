@@ -56,6 +56,7 @@
                         </div>
                         <button type="submit" class="btn btn-default">Submit</button>
                     </form>
+                    <a href="{{ route('payments.create') }}" class="btn btn-danger navbar-btn">Naujas mokėjimas</a>
                 @endauth
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">

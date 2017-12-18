@@ -27,6 +27,6 @@ class Payment extends Model
      */
     public function membership()
     {
-        return $this->hasOne('App\Membership');
+        return $this->belongsTo('App\Membership');
     }
 }

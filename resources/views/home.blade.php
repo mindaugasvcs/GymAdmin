@@ -12,7 +12,7 @@
             <tr>
                 <th>Unikalus ID</th>
                 <th>Vardas</th>
-                <th>Aktyvios narystės data</th>
+                <th>Aktyvi narystė</th>
                 <th>Tipas</th>
                 <th>Kiekis</th>
                 <th>Apsilankymų</th>
@@ -35,22 +35,20 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">Veiksmas <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li>
-                                <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Mokėjimų istorija</a>
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                    {{ csrf_field() }}
+                                <a href="{{ route('payments.index') }}" onclick="event.preventDefault(); this.nextElementSibling.submit();">Mokėjimų istorija</a>
+                                <form action="{{ route('payments.index') }}" method="GET" style="display: none;">
+                                    <input type="hidden" name="member_id" value="{{ $member->id }}">
                                 </form>
                             </li>
                             <li class="divider"></li>
                             <li>
-                                <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Atnaujinti duomenis</a>
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                    {{ csrf_field() }}
-                                </form>
+                                <a href="{{ route('members.edit', $member->id) }}">Atnaujinti duomenis</a>
                             </li>
                             <li>
-                                <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Ištrinti duomenis</a>
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                <a href="{{ route('members.destroy', $member->id) }}" onclick="event.preventDefault(); this.nextElementSibling.submit();">Ištrinti duomenis</a>
+                                <form action="{{ route('logout') }}" method="POST" style="display: none;">
                                     {{ csrf_field() }}
+                                    {{ method_field('DELETE') }}
                                 </form>
                             </li>
                         </ul>

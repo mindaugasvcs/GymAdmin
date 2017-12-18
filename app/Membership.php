@@ -8,6 +8,6 @@ class Membership extends Model
 {
     public function payments()
     {
-        return $this->belongsToMany('App\Payment');
+        return $this->hasMany('App\Payment');
     }
 }

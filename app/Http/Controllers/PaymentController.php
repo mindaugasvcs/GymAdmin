@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class MemberController extends Controller
+class PaymentController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -21,9 +21,20 @@ class MemberController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        if ($request->has('member_id')) {
+
+            $request->validate([
+                'member_id' => 'integer'
+            ]);
+
+            $payments = \App\Payment::where('member_id', $request->input('member_id'))->with('member', 'user', 'membership')->orderBy('created_at', 'desc')->paginate(15);
+        } else {
+            $payments = \App\Payment::with('member', 'user', 'membership')->orderBy('created_at', 'desc')->paginate(15);
+        }
+
+        return view('payments.index', ['payments' => $payments]);
     }
 
     /**

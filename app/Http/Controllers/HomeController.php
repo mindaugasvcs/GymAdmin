@@ -28,7 +28,7 @@ class HomeController extends Controller
         // $members = \App\Member::with('payments', 'visits')->orderBy('name', 'asc')->paginate(10);
 
         $members = DB::table('members')
-            ->select(DB::raw('members.unique_id, members.name, payments.active_since, memberships.limit_type, memberships.limit, (SELECT COUNT(*) FROM visits WHERE member_id=members.id AND created_at >= payments.active_since) AS visits_count, IF(memberships.limit_type="days_count",IF(DATEDIFF(ADDDATE(payments.active_since, INTERVAL memberships.limit DAY),NOW()) >= 0,"true","false"),IF((SELECT COUNT(*) FROM visits WHERE member_id=members.id AND created_at >= payments.active_since) <= memberships.limit,"true","false")) AS is_valid'))
+            ->select(DB::raw('members.id, members.unique_id, members.name, payments.active_since, memberships.limit_type, memberships.limit, (SELECT COUNT(*) FROM visits WHERE member_id=members.id AND created_at >= payments.active_since) AS visits_count, IF(memberships.limit_type="days_count",IF(DATEDIFF(ADDDATE(payments.active_since, INTERVAL memberships.limit DAY),NOW()) >= 0,"true","false"),IF((SELECT COUNT(*) FROM visits WHERE member_id=members.id AND created_at >= payments.active_since) <= memberships.limit,"true","false")) AS is_valid'))
             ->leftJoin(DB::raw('(SELECT members.id, MAX(payments.id) AS payment_id FROM members LEFT JOIN payments ON members.id = payments.member_id WHERE payments.active_since <= NOW() GROUP BY members.id) AS mp'), function($join)
             {
                 $join->on('members.id', '=', 'mp.id');

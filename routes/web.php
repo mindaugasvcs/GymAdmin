@@ -18,3 +18,7 @@
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
+Route::resource('/members', 'MemberController');
+Route::resource('/memberships', 'MembershipController');
+Route::resource('/payments', 'PaymentController');
+Route::resource('/visits', 'VisitController');
