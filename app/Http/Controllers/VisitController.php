@@ -23,9 +23,9 @@ class VisitController extends Controller
      */
     public function index()
     {
-        $visits = \App\Visit::orderBy('created_at', 'desc')->paginate(15);
-        $message = NULL;
-        return view('visits', ['visits' => $visits, 'message' => $message]);
+        // $visits = \App\Visit::orderBy('created_at', 'desc')->paginate(15);
+        // $message = NULL;
+        // return view('visits', ['visits' => $visits, 'message' => $message]);
     }
 
     /**

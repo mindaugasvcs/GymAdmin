@@ -44,9 +44,9 @@
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="{{ route('home') }}">Pagrindinis</a></li>
                         <li class="active"><a href="{{ route('members.index') }}">Nariai</a></li>
-                        <li class="active"><a href="{{ route('visits') }}">Lankymo žurnalas</a></li>
+                        <li class="active"><a href="{{ route('visits.index') }}">Lankymo žurnalas</a></li>
                         <li class="active"><a href="{{ route('members.create') }}">Naujas narys</a></li>
-                        <li class="active"><a href="{{ route('memberships') }}">Narystės planai</a></li>
+                        <li class="active"><a href="{{ route('memberships.index') }}">Narystės planai</a></li>
                     </ul>
                     <form class="navbar-form navbar-left" action="">
                         <div class="input-group">
@@ -178,6 +178,38 @@
          })
 
 
+    </script>
+
+<!-- Modal -->
+    <div id="confirm-delete-dialog" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Ištrynimo patvirtinimas</h4>
+                </div>
+                <div class="modal-body">
+                    <p></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Taip</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Ne</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $('#confirm-delete-dialog').on('show.bs.modal', function (event) {
+            var el = $(event.relatedTarget); // Element that triggered the modal
+            var name = el.data('name'); // Extract info from data-* attributes
+            // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+            var modal = $(this);
+            modal.find('.modal-body p').text('Ar tikrai norite ištrinti ' + name + ' ?');
+            modal.find('.modal-footer .btn-primary').on('click', function (event) {
+                el.next().submit();
+            });
+        });
     </script>
 </body>
 </html>

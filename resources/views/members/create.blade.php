@@ -58,7 +58,7 @@
                                 <select class="form-control memberships" name="memberships" value="{{ old('memberships') }}" required>
                                         <option hidden>Pasirinkti narystės tipą</option>
                                     @foreach ($memberships as $membership)
-                                        <option value="{{ $membership['id'] }}">{{ $membership['memberships'] }}</option>
+                                        <option value="{{ $membership['id'] }}">{{ $membership['title'] }}</option>
                                     @endforeach
                                 </select>
 

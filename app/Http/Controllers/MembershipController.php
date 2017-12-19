@@ -23,8 +23,8 @@ class MembershipController extends Controller
      */
     public function index()
     {
-        $memberships = \App\Membership::all();
-        return view('memberships', ['memberships' => $memberships]);
+        $memberships = \App\Membership::orderBy('created_at', 'desc')->get();
+        return view('memberships.index', ['memberships' => $memberships]);
     }
 
     /**
@@ -34,7 +34,7 @@ class MembershipController extends Controller
      */
     public function create()
     {
-        //
+        return view('memberships.create');
     }
 
     /**
@@ -45,7 +45,18 @@ class MembershipController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => 'required|string|max:100',
+            'limit_type' => 'required|string|in:days_count,visits_count',
+            'limit' => 'required|digits_between:1,4',
+            'amount' => 'required|numeric'
+        ]);
+
+        $membership = new \App\Membership();
+        $membership->fill($request->all());
+        $membership->save();
+
+        return redirect()->route('memberships.index');
     }
 
     /**
@@ -67,7 +78,9 @@ class MembershipController extends Controller
      */
     public function edit($id)
     {
-        //
+        $membership = \App\Membership::find($id);
+
+        return view('memberships.edit', ['membership' => $membership]);
     }
 
     /**
@@ -79,7 +92,18 @@ class MembershipController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'title' => 'required|string|max:100',
+            'limit_type' => 'required|string|in:days_count,visits_count',
+            'limit' => 'required|digits_between:1,4',
+            'amount' => 'required|numeric'
+        ]);
+
+        $membership = \App\Membership::find($id);
+        $membership->fill($request->all());
+        $membership->save();
+
+        return redirect()->route('memberships.index');
     }
 
     /**
@@ -90,7 +114,15 @@ class MembershipController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $payment = \App\Payment::where('membership_id', $id)->first();
+
+        if ($payment) {
+            return 'Klaida! Toks planas yra mokėjimuose.';
+        }
+
+        \App\Membership::destroy($id);
+
+        return redirect(route('memberships.index'));
     }
 
     public function findMembership(Request $request)

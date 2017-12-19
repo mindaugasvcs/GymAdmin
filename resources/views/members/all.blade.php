@@ -17,18 +17,16 @@
                     <table class="table table-hover">
                       <thead>
                         <tr>
-                          <th>Kortelės ID</th>
+                          <th>Unikalus ID</th>
                           <th>Lankytojo vardas</th>
-                          <th>Galiojimo pabaiga</th>
                           <th></th>
                         </tr>
                       </thead>
                       <tbody>
                           @foreach ($members as $member)
                             <tr>
-                              <td>{{ $member['card_id'] }}</td>
-                              <td>{{ $member['name']}}</td>
-                              <td>{{ $member['expiry_date']}}</td>
+                              <td>{{ $member['unique_id'] }}</td>
+                              <td>{{ $member['name'] }}</td>
                               <td>
                                 <div class="dropdown">
                                       <a class="dropdown-toggle" id="dropdownMenu2" data-toggle="dropdown" href="#">
