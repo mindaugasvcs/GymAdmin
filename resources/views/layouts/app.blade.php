@@ -42,12 +42,31 @@
                     <!-- Left Side Of Navbar -->
                 @auth // The user is authenticated
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="{{ route('home') }}">Pagrindinis</a></li>
-                        <li class="active"><a href="{{ route('members.index') }}">Nariai</a></li>
-                        <li class="active"><a href="{{ route('visits.index') }}">Lankymo žurnalas</a></li>
-                        <li class="active"><a href="{{ route('members.create') }}">Naujas narys</a></li>
-                        <li class="active"><a href="{{ route('memberships.index') }}">Narystės planai</a></li>
+                        <li class="{{ Route::currentRouteNamed('home') ? 'active' : '' }}"><a href="{{ route('home') }}">Home</a></li>
+                        <li class="dropdown{{ Route::currentRouteNamed('members.*') ? ' active' : '' }}">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Nariai <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="{{ route('members.index') }}">Visas sąrašas</a></li>
+                                <li><a href="{{ route('members.create') }}">Naujas įrašas</a></li>
+                            </ul>
+                        </li>
+                        <li class="{{ Route::currentRouteNamed('visits.*') ? 'active' : '' }}"><a href="{{ route('visits.index') }}">Lankymo žurnalas</a></li>
+                        <li class="dropdown{{ Route::currentRouteNamed('payments.*') ? ' active' : '' }}">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Mokėjimai <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="{{ route('payments.index') }}">Visas sąrašas</a></li>
+                                <li><a href="{{ route('payments.create') }}">Naujas įrašas</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown{{ Route::currentRouteNamed('memberships.*') ? ' active' : '' }}">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Narystės planai <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="{{ route('memberships.index') }}">Visas sąrašas</a></li>
+                                <li><a href="{{ route('memberships.create') }}">Naujas įrašas</a></li>
+                            </ul>
+                        </li>
                     </ul>
+
                     <form class="navbar-form navbar-left" action="">
                         <div class="input-group">
                             <input type="text" class="form-control" placeholder="Search" name="search" >
@@ -66,8 +85,6 @@
                         </div>
                         <button type="submit" class="btn btn-default">Submit</button>
                     </form>
-
-                    <a href="{{ route('payments.create') }}" class="btn btn-danger navbar-btn">Naujas mokėjimas</a>
                 @endauth
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">

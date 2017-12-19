@@ -51,7 +51,7 @@
                                 <a href="{{ route('members.edit', $member->id) }}">Atnaujinti duomenis</a>
                             </li>
                             <li>
-                                <a href="#confirm-delete-dialog" data-toggle="modal" data-name="{{ $membership->title }}">Ištrinti visus duomenis</a>
+                                <a href="#confirm-delete-dialog" data-toggle="modal" data-name="{{ $member->name }}">Ištrinti visus duomenis</a>
                                 <form action="{{ route('members.destroy', $member->id) }}" method="POST" style="display: none;">
                                     {{ csrf_field() }}
                                     {{ method_field('DELETE') }}

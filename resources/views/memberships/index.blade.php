@@ -46,9 +46,6 @@
                     @endforeach
                     </tbody>
                 </table>
-                <div class="panel-footer">
-                    <a href="{{ route('memberships.create') }}" class="btn btn-danger navbar-btn">Naujas planas</a>
-                </div>
             </div>
         </div>
     </div>
