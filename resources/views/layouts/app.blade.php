@@ -67,9 +67,9 @@
                         </li>
                     </ul>
 
-                    <form class="navbar-form navbar-left" action="">
+                    <form class="navbar-form navbar-left" action="{{ route('home') }}" method="GET">
                         <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Search" name="search" >
+                            <input type="text" class="form-control" placeholder="Search" name="search" value="{{ old('search') }}">
                             <div class="input-group-btn">
                                 <button class="btn btn-default" type="submit">
                                     <i class="glyphicon glyphicon-search"></i>
@@ -78,13 +78,6 @@
                         </div>
                     </form>
 
-                    <form class="navbar-form navbar-left" method="GET" action="/validateMembership" enctype="multipart/form-data">
-
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Search" name="search" autofocus>
-                        </div>
-                        <button type="submit" class="btn btn-default">Submit</button>
-                    </form>
                 @endauth
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
@@ -117,12 +110,7 @@
                 </div>
             </div>
         </nav>
-        @auth
-          @yield('content')
-          @else
-          @yield('login')
-        @endauth
-
+        @yield('content')
     </div>
 
     <!-- Scripts -->
