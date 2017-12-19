@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Member extends Model
 {
-    // protected $fillable = ['card_id', 'name', 'start_date', 'expiry_date'];
+    protected $fillable = ['unique_id', 'name'];
 
     /**
      * Get the payments for the member.

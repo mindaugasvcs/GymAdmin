@@ -21,11 +21,20 @@ class VisitController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        // $visits = \App\Visit::orderBy('created_at', 'desc')->paginate(15);
-        // $message = NULL;
-        // return view('visits', ['visits' => $visits, 'message' => $message]);
+        if ($request->has('member_id')) {
+
+            $request->validate([
+                'member_id' => 'integer'
+            ]);
+
+            $visits = \App\Visit::where('member_id', $request->input('member_id'))->orderBy('created_at', 'desc')->paginate(15);
+        } else {
+            $visits = \App\Visit::orderBy('created_at', 'desc')->paginate(15);
+        }
+
+        return view('visits.index', ['visits' => $visits]);
     }
 
     /**

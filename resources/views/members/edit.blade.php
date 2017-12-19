@@ -6,7 +6,7 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Naujo nario registracija</h3>
+                    <h3 class="panel-title">{{ $member->name }} anketos atnaujinimas</h3>
                 </div>
 
                 <div class="panel-body">
@@ -19,7 +19,7 @@
                     @endif
                             <label class="col-xs-2 control-label" for="name">Vardas</label>
                             <div class="col-xs-10">
-                                <input type="text" id="name" name="name" class="form-control" placeholder="Tekstas">
+                                <input type="text" id="name" name="name" value="{{ old('name', $member->name) }}" class="form-control" placeholder="Tekstas">
                             @if ($errors->has('name'))
                                 <span class="help-block">{{ $errors->first('name') }}</span>
                             @endif
@@ -32,7 +32,7 @@
                     @endif
                             <label class="col-xs-2 control-label" for="unique_id">Unikalus ID</label>
                             <div class="col-xs-10">
-                                <input type="number" id="unique_id" name="unique_id" class="form-control" placeholder="10 skaitmenų">
+                                <input type="number" id="unique_id" name="unique_id" value="{{ old('unique_id', $member->unique_id) }}" class="form-control" placeholder="10 skaitmenų">
                             @if ($errors->has('unique_id'))
                                 <span class="help-block">{{ $errors->first('unique_id') }}</span>
                             @endif

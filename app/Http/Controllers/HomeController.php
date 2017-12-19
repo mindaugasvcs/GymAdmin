@@ -35,6 +35,7 @@ class HomeController extends Controller
             })
             ->leftJoin('payments', 'mp.payment_id', '=', 'payments.id')
             ->leftJoin('memberships', 'payments.membership_id', '=', 'memberships.id')
+            ->orderBy(DB::raw('payments.active_since', 'desc'))
             ->paginate(15);
 
         return view('home', ['members' => $members]);
